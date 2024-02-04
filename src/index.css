@@ -8,11 +8,36 @@ body {
   /* font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif; */
-  font-family: montserrat;
+  font-family: "montserrat", sans-serif;
 }
 
 #root {
   scroll-snap-type: y mandatory;
   height: 100vh;
   overflow-y: scroll;
+  color: #00000052;
+}
+
+@media screen and (max-width: 991px) {
+  video {
+    width: 200% !important;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  video {
+    width: 220% !important;
+  }
+}
+
+@media screen and (max-width: 567px) {
+  video {
+    width: 250% !important;
+  }
+}
+
+@media screen and (max-width: 450px) {
+  video {
+    width: 400% !important;
+  }
 }

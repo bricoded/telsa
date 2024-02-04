@@ -2,6 +2,7 @@ import React from 'react'
 import { styled } from 'styled-components'
 
 const Section = ({
+  nav,
   title,
   video,
   itemTextLight,
@@ -10,6 +11,7 @@ const Section = ({
   moreInfo,
   moreInfoLink,
   backgroundImg,
+  mobileImg,
   rightBtnText,
   leftBtnText,
   footerText,
@@ -18,12 +20,13 @@ const Section = ({
 }) => {
   const vidStyles = {
     position: 'absolute',
-    top: 0,
-    left: 0,
-    width: "100%",
+    top: '50%',
+    left: '50%',
+    width: "116%",
+    transform: 'translate(-50%, -50%)'
   }
   return (
-    <Wrap bgImage={backgroundImg}>
+    <Wrap bgImage={backgroundImg} mobileImg={mobileImg}>
       {video &&
         <video autoPlay muted loop style={vidStyles}>
           <source src={`/assets/${video}`} type="video/mp4" />
@@ -40,7 +43,7 @@ const Section = ({
           <LeftButton>{leftBtnText}</LeftButton>
           {rightBtnText && <RightButton>{rightBtnText}</RightButton>}
         </ButtonGroup>
-        <Terms light={footerTextLight}>{footerText} <br /> <a href="/">{linkText}</a></Terms>
+        <Terms light={footerTextLight}>{footerText} <a href="/">{linkText}</a></Terms>
       </Buttons>
     </Wrap>
   )
@@ -59,6 +62,10 @@ const Wrap = styled.div`
   justify-content: space-between;
   background-image: ${props => `url('/assets/${props.bgImage}')`};
   position: relative;
+  overflow: hidden;
+  @media screen and (max-width: 567px){
+    background-image: ${props => `url(/assets/${props.mobileImg})`}
+  }
 `
 
 const ItemText = styled.div`
@@ -66,14 +73,23 @@ const ItemText = styled.div`
   color: ${props => props.light ? '#fff' : '#171A20'};
   text-align: center;
   z-index: 10;
+  @media screen and (max-width: 567px){
+    margin-top: 150px;
+  }
   h3 {
     font-size: 22px;
     font-weight: 500;
     letter-spacing: .5px;
+    @media screen and (max-width: 567px){
+      font-size: 15px;
+    }
   }
   p {
     font-size: 13px;
     letter-spacing: .5px;
+    @media screen and (max-width: 567px){
+      font-size: 11px;
+    }
   }
   a {
     color: #fff;
@@ -87,12 +103,22 @@ const HeaderText = styled.h1`
   font-size: 45px;
   font-weight: 500;
   color: ${props => props.light ? '#fff' : 'inherit'};
+  @media screen  and (max-width: 567px){
+    font-size: 30px;
+    font-weight: 600;
+  }
 `
 
 const ButtonGroup = styled.div`
   display: flex;
   gap: 20px;
   margin-bottom: 30px;
+  @media screen and (max-width: 567px){
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    align-items: center;
+  }
 `
 const LeftButton = styled.div`
   width: 270px;
@@ -107,6 +133,9 @@ const LeftButton = styled.div`
   background-color: #fff;
   opacity: 0.65;
   color: #171A20;
+  @media screen and (max-width: 567px){
+    width: 90%;
+  }
 `
 const RightButton = styled(LeftButton)`
   color: #fff;
@@ -120,6 +149,9 @@ const Buttons = styled.div`
   flex-direction: column;
   color: #171A20;
   text-align: center;
+  @media screen and (max-width: 567px){
+    width: 100%;
+  }
 `
 
 const Terms = styled.p`
@@ -128,6 +160,9 @@ const Terms = styled.p`
   font-size: 13px;
   letter-spacing: .5px;
   color: ${props => props.light ? '#fff' : 'inherit'};
+  @media screen and (max-width: 567px){
+    font-size: 10px;
+  }
   a {
     text-decoration: underline;
     color: inherit;
